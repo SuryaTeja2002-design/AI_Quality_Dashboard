@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Code</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    form {
+      margin-bottom: 2rem;
+    }
+    input[type="file"], input[type="url"] {
+      padding: 0.5rem;
+      margin-right: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Upload Code</h1>
+
+  <!-- Upload Form -->
+  <form action="/analyze" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Analyze</button>
+  </form>
+
+  <h2>Or Scan a GitHub Repo</h2>
+
+  <!-- GitHub Repo Form -->
+  <form action="/analyze_github" method="POST">
+    <input type="url" name="repo_url" placeholder="https://github.com/user/repo" required style="width: 400px;">
+    <button type="submit">Analyze GitHub Repo</button>
+  </form>
+
+</body>
+</html>

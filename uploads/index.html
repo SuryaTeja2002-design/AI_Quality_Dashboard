@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SuryaTeja Gorthi | Portfolio</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #111122);
+      color: #eee;
+    }
+
+    header {
+      background-color: #000;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #aaa;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #00f0ff;
+    }
+
+    section {
+      padding: 100px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    #hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    
+
+    #hero h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(90deg, #00f0ff, #ff00f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      font-weight: bold;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      color: #00f0ff;
+      background-color: #0f0f0f;
+      border: 2px solid;
+      border-image-slice: 1;
+      border-width: 2px;
+      border-image-source: linear-gradient(90deg, #00f0ff, #ff00f7);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, #00f0ff, #ff00f7);
+      color: #000;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      line-height: 1.6;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 50px;
+      padding-left: 30px;
+      border-left: 2px solid #555;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+      padding-left: 20px;
+    }
+
+    .timeline-icon {
+      position: absolute;
+      left: -40px;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      background: #00f0ff;
+      color: #000;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 25px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .timeline-content {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+    }
+
+    .timeline-content h3 {
+      color: #00f0ff;
+    }
+
+    .position {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .date {
+      font-style: italic;
+      color: #999;
+      font-size: 0.9em;
+    }
+
+    .tags {
+      margin: 10px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #444;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.8em;
+      margin: 3px;
+      color: white;
+    }
+
+    .tag {
+      background: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin: 5px;
+      color: white;
+      display: inline-block;
+    }
+    
+    /* Tech-specific colors */
+    .tag.sql           { background: #d83b01; }
+    .tag.powerbi       { background: #f2c811; color: #000; }
+    .tag.powerapps     { background: #742774; }
+    .tag.flutter       { background: #02569B; }
+    .tag.python        { background: #9ea535; }
+    .tag.firebase      { background: #FFCA28; color: #000; }
+    .tag.react-native  { background: #fb61c0; color: #000; }
+    .tag.dart          { background: #00ff08; color: #000; }
+    .tag.angular       { background: #DD0031; }
+    .tag.dotnet        { background: #512BD4; }
+    .tag.c             { background: #9B599A; }
+    .tag.html          { background: #e44d26; }
+    .tag.cplusplus     { background: #f34b7d; } /* optional C++ color */
+    .tag.mongodb       { background: #47A248; color: #fff; } /* optional MongoDB color */
+    .tag.docker        { background: #2496ED; color: #fff; } /* optional Docker color */
+    .tag.java          { background: #007396; } /* optional Java color */
+    .tag.javascript    { background: #F7DF1E; color: #000; } /* optional JavaScript color */
+    .tag.typescript    { background: #007ACC; color: #fff; } /* optional TypeScript color */
+    .tag.css           { background: #264de4; } /* optional CSS color */
+    .tag.bootstrap     { background: #563d7c; } /* optional Bootstrap color */ 
+    .tag.rust          { background: #dea584; } /* optional Rust color */  
+    .tag.nodejs       { background: #8CC84B; } /* optional Node.js color */
+    .tag.git           { background: #F05032; } /* optional Git color */
+    .tag.github        { background: #181717; } /* optional GitHub color */
+    .tag.aws           { background: #FF9900; } /* optional AWS color */
+
+
+    .skills-list, .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .skills-list li {
+      background: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .project-card {
+      background: #1c1c1c;
+      border-radius: 15px;
+      width: 300px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.1);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 240, 255, 0.3);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #00f0ff;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .project-links {
+      margin-top: 15px;
+    }
+
+    .project-links a {
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      border-radius: 20px;
+      background-color: #00f0ff;
+      color: #000;
+      margin-right: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .project-links a:hover {
+      background-color: #ff00f7;
+      color: #fff;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #00f0ff;
+      font-weight: 500;
+    }
+
+    .social-links a:hover {
+      color: #ff00f7;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 2.5rem;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+    } 
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      justify-items: center;
+      margin-top: 40px;
+    }       
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">SuryaTeja</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </header>
+
+  <section id="hero">
+    <h1>Hi, I'm SuryaTeja Gorthi</h1>
+    <p>Software Developer | Data Enthusiast | Creative Problem Solver</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </section>
+
+  <section id="about" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>
+      I'm a final-year Software Engineering student at Ontario Tech University, passionate about designing and developing scalable, real-world software solutions. From predictive weather models to civic engagement platforms and secure file systems, I’ve built full-stack applications that solve real problems and showcase my versatility across both frontend and backend technologies.
+    </p>
+    <p>
+      My experience spans data analysis, mobile app development, and cloud-based infrastructure — using tools like Python, Dart, Firebase, AWS, Google Cloud, SQL, Power BI, and more. I've had the opportunity to intern with Ontario Power Generation, apprentice as a university app developer, and serve in federal elections while maintaining strong academic performance (Dean’s and President’s Honour Lists).
+    </p>
+    <p>
+      I believe in combining creativity with code, and I’m always seeking projects where I can push boundaries, learn something new, and build tech that matters. Whether it's crafting secure apps, developing data pipelines, or launching desktop tools — I’m all about bringing bold ideas to life through clean, effective code.
+    </p>
+  </section>
+  
+  <section id="experience" data-aos="fade-up">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">💼</div>
+        <div class="timeline-content">
+          <h3>Elections Canada</h3>
+          <p class="position">Information Officer <span class="date">Mar 2025 – Present</span></p>
+          <ul>
+            <li>First point of contact for voters during federal elections.</li>
+            <li>Assisted with registration, station direction, and procedures.</li>
+            <li>Ensured smooth, secure operations per Elections Canada policy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">💼</div>
+        <div class="timeline-content">
+          <h3>Ontario Power Generation</h3>
+          <p class="position">Data Analyst Intern <span class="date">May 2023 – May 2024</span></p>
+          <div class="tags">
+            <span class="tag sql">SQL Server</span>
+            <span class="tag powerbi">Power BI</span>
+            <span class="tag powerapps">Power Apps</span>
+          </div>
+          <ul>
+            <li>Built analytics dashboards for nuclear personnel.</li>
+            <li>Automated ETL pipelines for real-time reporting and decision making.</li>
+            <li>Created Power Apps for streamlined reporting processes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">💼</div>
+        <div class="timeline-content">
+          <h3>Ontario Tech University</h3>
+          <p class="position">Software Developer <span class="date">Nov 2022 – Apr 2023</span></p>
+          <div class="tags">
+            <span class="tag flutter">Flutter</span>
+            <span class="tag python">Python</span>
+            <span class="tag firebase">Firebase</span>
+          </div>
+          <ul>
+            <li>Built a mobile app with smooth UI and navigation.</li>
+            <li>Handled Python backend and Firebase for auth and storage.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" data-aos="fade-up">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li class="tag python">Python</li>
+      <li class="tag java">Java</li>
+      <li class="tag c">C</li>
+      <li class="tag cplusplus">C++</li>
+      <li class="tag flutter">Flutter</li>
+      <li class="tag dart">Dart</li>
+      <li class="tag firebase">Firebase</li>
+      <li class="tag mongodb">MongoDB</li>
+      <li class="tag powerbi">Power BI</li>
+      <li class="tag docker">Docker</li>
+      <li class="tag sql">SQL</li>
+      <li class="tag angular">Angular</li>
+      <li class="tag dotnet">.NET Framework</li>
+      <li class="tag powerapps">Power Apps</li>
+      <li class="tag react-native">React Native</li>
+      <li class="tag html">HTML</li>
+      <li class="tag javascript">JavaScript</li>
+      <li class="tag typescript">TypeScript</li>
+      <li class="tag css">CSS</li>
+      <li class="tag bootstrap">Bootstrap</li>
+      <li class="tag rust">Rust</li>
+      <li class="tag nodejs">Node.js</li>
+      <li class="tag git">Git</li>
+      <li class="tag github">GitHub</li>
+    </ul>
+  </section>
+  
+
+  <section id="projects" data-aos="fade-up">
+    <h2>Projects</h2>
+    <div class="projects-container">
+  
+      <!-- Project 1 -->
+      <div class="project-card">
+        <img src="images/food_app.png" alt="Food App" />
+        <h3>Food Planning App</h3>
+        <p>Flutter app for meal tracking, budgeting, and real-time sync with Firebase.</p>
+        <div class="tags">
+          <span class="tag dart">Dart</span>
+          <span class="tag flutter">Flutter</span>
+          <span class="tag firebase">Firebase</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Sharrabbha1/FoodApp_Assignment3" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+<div class="project-card">
+  <img src="images/municipalities.png" alt="Municipal App" />
+  <h3>By-Laws Municipal App</h3>
+  <p>React Native platform for reporting civic violations with Firebase backend.</p>
+  <div class="tags">
+    <span class="tag react-native">React Native</span>
+    <span class="tag firebase">Firebase</span>
+    <span class="tag javascript">javascript</span>
+  </div>        
+  <div class="project-links">
+    <a href="https://github.com/Sharrabbha1/ByLaws_App" target="_blank" rel="noopener">Code</a>
+  </div>
+</div>
+
+<!-- Project 3 -->
+<div class="project-card">
+  <img src="images/weather_simulation.png" alt="Weather App" />
+  <h3>Weather Simulation</h3>
+  <p>Used ARIMA + Monte Carlo for forecasts. Deployed with React and Python backend.</p>
+  <div class="tags">
+    <span class="tag python">Python</span>
+    <span class="tag react-native">React Native</span>
+    <span class="tag javascript">javascript</span>
+  </div>        
+  <div class="project-links">
+    <a href="https://github.com/Sharrabbha1/Weather_Simulation" target="_blank" rel="noopener">Code</a>
+  </div>
+</div>
+
+
+<!-- Project 4 -->
+<div class="project-card">
+  <img src="images/code_whipser.png" alt="Code Whisper" />
+  <h3> Rust + AI-Driven Static Analyzer: “CodeWhisper”</h3>
+  <p>Detects vulnerabilities like hardcoded secrets, dangerous imports, or unused code and it will also be able to suggest improvements for code quality and performance and gives an Ai response</p>
+  <div class="tags">
+    <span class="tag python">Python</span>
+    <span class="tag react-native">React Native</span>
+    <span class="tag javascript">javascript</span>
+    <span class="tag rust">Rust</span>
+    <span class="tag html">HTML</span>
+  </div>        
+  <div class="project-links">
+    <a href="https://github.com/Sharrabbha1/Code_Whisper" target="_blank" rel="noopener">Code</a>
+  </div>
+</div>
+
+  </section>
+  
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact</h2>
+    <div class="social-links">
+  
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/suryateja-gorthi-7b9253238/" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+             alt="LinkedIn" style="width: 24px; vertical-align: middle; margin-right: 8px;" />
+        LinkedIn
+      </a>
+  
+      <!-- GitHub (white icon) -->
+      <a href="https://github.com/Sharrabbha1" target="_blank" rel="noopener">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png"
+             alt="GitHub" style="width: 24px; vertical-align: middle; margin-right: 8px;" />
+        GitHub
+      </a>
+  
+      <!-- Email (lighter icon) -->
+      <a href="mailto:2002suryateja@gmail.com">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/message-squared.png"
+             alt="Email" style="width: 24px; vertical-align: middle; margin-right: 8px;" />
+        Email
+      </a>
+  
+    </div>
+  </section>
+  
+  <footer>
+    <p>© 2025 SuryaTeja Gorthi</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scan Results</title>
+  <style>
+    body { font-family: sans-serif; background: #f8f8f8; padding: 2rem; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+    h1 { color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Scan Results for <%= filename %></h1>
+
+  <% if results.empty? %>
+    <p>No issues found. 🎉</p>
+  <% else %>
+    <table>
+      <tr>
+        <th>Line</th>
+        <th>Issue</th>
+      </tr>
+      <% results.each do |res| %>
+        <tr>
+          <td><%= res[:line] %></td>
+          <td><%= res[:message] %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+  <br />
+  <a href="/">Upload another file</a>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AI Code Quality Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; padding: 2rem; }
+    h1, h2 { color: #333; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th { background-color: #e0e0e0; }
+    .summary {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    .chart-container {
+      width: 400px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 AI Code Quality Analyzer</h1>
+
+  <div class="summary">
+    <h2>Summary for <%= filename %></h2>
+    <p><strong>Total Issues:</strong> <%= total_issues %></p>
+    <p><strong>Risk Level:</strong> 
+      <%= case total_issues
+        when 0 then "✅ Clean"
+        when 1..3 then "🟡 Medium"
+        else "🔴 High"
+      end %>
+    </p>
+  </div>
+
+  <% if issues.empty? %>
+    <p>No issues found. 🎉</p>
+  <% else %>
+    <div class="chart-container">
+      <canvas id="issueChart"></canvas>
+    </div>
+
+    <table>
+      <tr>
+        <th>Line</th>
+        <th>Issue</th>
+        <th>AI Suggestion</th>
+      </tr>
+      <% issues.each do |res| %>
+        <tr>
+          <td><%= res[:line] %></td>
+          <td><%= res[:message] %></td>
+          <td><%= res[:suggestion] %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <br />
+    <form action="/export_json" method="GET">
+      <button type="submit">⬇️ Download JSON</button>
+    </form>
+
+    <script>
+      const issueCounts = {
+        eval: <%= issues.count { |r| r[:message].include?('eval') } %>,
+        password: <%= issues.count { |r| r[:message].include?('password') } %>,
+        system: <%= issues.count { |r| r[:message].include?('system') } %>
+      };
+
+      const ctx = document.getElementById('issueChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Eval', 'Hardcoded Password', 'System Call'],
+          datasets: [{
+            data: [issueCounts.eval, issueCounts.password, issueCounts.system],
+            backgroundColor: ['#f39c12', '#c0392b', '#8e44ad']
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { position: 'bottom' },
+            title: {
+              display: true,
+              text: 'Issue Type Distribution'
+            }
+          }
+        }
+      });
+    </script>
+  <% end %>
+
+  <br />
+  <a href="/">🔁 Upload another file</a>
+</body>
+</html>
