@@ -30,7 +30,7 @@ git push
 ## the images of the code working.
 ![image](https://github.com/user-attachments/assets/8d1a8eec-98de-444e-9f20-0f3608355c45)
 
-![image](https://github.com/user-attachments/assets/163acf6d-5156-48e8-964e-99774cf826f0)
+![image](https://github.com/user-attachments/assets/19c5beb0-426d-4710-8743-f06fbf5ae7c0)
 
 ![image](https://github.com/user-attachments/assets/b78a04d5-3f5d-4650-9054-7a6e6ffc40e0)
 
