@@ -9,6 +9,13 @@ Upload `.rb`, `.py`, or `.js` files or GitHub repo URLs to detect potential secu
 - Download results as JSON
 - Clean Sinatra-based interface
 
+##  Generative AI Integration
+
+This project integrates **OpenAI’s GPT-4** API to:
+- Interpret detected security/code smells
+- Suggest context-aware refactoring
+- Assist in identifying anti-patterns, dead code, or risky logic
+
 ## To Run Locally
 
 ```bash
